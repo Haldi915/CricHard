@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CricHard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://th.bing.com/th/id/OIP.Vu7F7OeMyOOOHY1DxE68cQAAAA?rs=1&pid=ImgDetMain') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      animation: fadeInBody 1s ease-in;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background-color: rgba(0, 51, 102, 0.9);
+      padding: 15px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    header img {
+      height: 50px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    nav {
+      background-color: rgba(0, 85, 165, 0.9);
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 5px;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #ffcc00;
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+      transform: scale(1.1);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeInTab 0.8s ease-in-out;
+    }
+
+    @keyframes fadeInTab {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content {
+      padding: 20px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      margin: 15px;
+      border-radius: 10px;
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      width: 100%;
+      animation: zoomIn 1s ease-out;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .video-container iframe {
+      width: 100%;
+      max-width: 897px;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    footer {
+      background-color: rgba(0, 51, 102, 0.9);
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      width: 100%;
+      animation: fadeInFooter 1s ease-in;
+    }
+
+    @keyframes fadeInFooter {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      nav {
+        flex-direction: column;
+      }
+
+      .content {
+        padding: 15px;
+        margin: 10px;
+      }
+    }
+  </style>
+  <script>
+    function showTab(tabId) {
+      if (tabId === 'fixtures') {
+        window.location.href = 'https://www.bing.com/sportsdetails?q=mumbai%20indians%202025%20fixtures&sport=Cricket&scenario=Team&TimezoneId=India%20Standard%20Time&IANATimezoneId=Asia/Kolkata&ISOTimezoneKey=IST&defaultleague=Cricket_IPL&queriedyear=2025&intent=Schedule&team=SportzInteractive_Cricket_IPL_2025_Team_1111,SportzInteractive_Cricket_IPL_2024_Team_1111&seasonyear=2025&segment=sports&isl2=true&';
+      } else if (tabId === 'squad') {
+        window.location.href = 'https://www.cricbuzz.com/cricket-team/mumbai-indians/62/players';
+      } else if (tabId === 'store') {
+        window.location.href = 'https://www.youtube.com/@MumbaiIndians/store';}
+       else {
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+      }
+    }
+
+    window.onload = () => {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+      document.getElementById('home').classList.add('active');
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="https://th.bing.com/th/id/OIP.NU4D4BJzWANggqn9YWbG6QHaEq?rs=1&pid=ImgDetMain" alt="CricHard Logo">
+    <h1>CricHard</h1>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showTab('home')">Home</a>
+    <a href="#" onclick="showTab('squad')">Squad</a>
+    <a href="#" onclick="showTab('fixtures')">Fixtures</a>
+    <a href="#" onclick="showTab('store')">Store</a>
+  </nav>
+
+  <div id="home" class="tab-content content active">
+    <h2>Welcome to CricHard!</h2>
+    <p>Your one-stop destination for everything about Mumbai Indians.</p>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/7uchoGsQUfU" title="Play Like Mumbai - Our Official Anthem for IPL 2025 | Mumbai Indians" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div id="fixtures" class="tab-content content"></div>
+
+  <div id="store" class="tab-content content">
+    <h2>Store</h2>
+    <p>Fan merchandise and accessories will be available here.</p>
+  </div>
+
+  <footer>
+    Created by Hardik Bhardwaj
+  </footer>
+</body>
+</html>
